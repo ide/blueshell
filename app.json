@@ -20,7 +20,12 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "scheme": "blueshell",
+    "android": {
+      "package": "io.expo.blueshell"
+    },
     "ios": {
+      "bundleIdentifier": "io.expo.BlueShell",
       "supportsTablet": true
     }
   }
