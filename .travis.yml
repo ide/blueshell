@@ -33,14 +33,27 @@ matrix:
         - sudo ln -s "$(which expo)" /usr/local/bin/exp
 
       script:
-        - cd android && ./gradlew assembleProdMinSdkProdKernel
+        - cd android
+        - ./gradlew assembleProdMinSdkProdKernelRelease
+        - cd "$TRAVIS_BUILD_DIR"
+        - cp android/app/build/outputs/apk/prodMinSdkProdKernel/release/app-prodMinSdk-prodKernel-release-unsigned.apk "app-release-unsigned-build-${TRAVIS_COMMIT}-${TRAVIS_BUILD_NUMBER}.apk"
+      
+      addons:
+        artifacts:
+          s3_region: "us-west-2"
+          paths:
+            - "app-release-unsigned-build-${TRAVIS_COMMIT}-${TRAVIS_BUILD_NUMBER}.apk"
+          target_paths: 
+            - builds
 
       before_cache:
+        - npm cache verify
         - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
         - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 
       cache:
         directories:
+          - $HOME/.npm/
           - $HOME/.gradle/caches/
           - $HOME/.gradle/wrapper/
           - $HOME/.android/build-cache
