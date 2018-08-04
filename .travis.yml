@@ -29,10 +29,16 @@ matrix:
       
       before_script:
         - expo login --non-interactive --username "$EXPO_USERNAME" --password "$EXPO_PASSWORD"
+
+      script:
+        # Detach the project
         - expo eject --non-interactive --eject-method expoKit
         - sudo ln -s "$(which expo)" /usr/local/bin/exp
 
-      script:
+        # Publish the project
+        - expo publish --non-interactive
+
+        # Build the APK
         - cd android
         - ./gradlew assembleProdMinSdkProdKernelRelease
         - cd "$TRAVIS_BUILD_DIR"
