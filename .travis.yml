@@ -27,10 +27,12 @@ matrix:
         - npm install --global expo-cli
         - npm install
       
-      script:
+      before_script:
         - expo login --non-interactive --username "$EXPO_USERNAME" --password "$EXPO_PASSWORD"
         - expo eject --non-interactive --eject-method expoKit
-        - ./gradlew assembleProdMinSdkProdKernel
+
+      script:
+        - cd android && ./gradlew assembleProdMinSdkProdKernel
 
       before_cache:
         - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
