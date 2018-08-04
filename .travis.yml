@@ -30,6 +30,7 @@ matrix:
       before_script:
         - expo login --non-interactive --username "$EXPO_USERNAME" --password "$EXPO_PASSWORD"
         - expo eject --non-interactive --eject-method expoKit
+        - sudo ln -s "$(which expo)" /usr/local/bin/exp
 
       script:
         - cd android && ./gradlew assembleProdMinSdkProdKernel
