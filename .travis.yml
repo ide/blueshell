@@ -1,22 +1,24 @@
 matrix:
   include:
     - language: android
-      components:
-        # Use the latest SDK Platform Tools ("tools" is intentionally listed twice
-        # following the Travis CI docs)
-        - tools
-        - platform-tools
-        - tools
-        # buildToolsVersion
-        - build-tools-27.0.3
-        # compileSdkVersion
-        - android-27
-        - extra-android-m2repository
-        - extra-android-support
-        - extra-google-google_play_services
-        - extra-google-m2repository
-        - add-on
-        - extra
+      android:
+        components:
+          # Use the latest SDK Platform Tools ("tools" is intentionally listed twice
+          # following the Travis CI docs)
+          - tools
+          - platform-tools
+          - tools
+
+          # buildToolsVersion
+          - build-tools-27.0.3
+          
+          # compileSdkVersion
+          - android-27
+
+          - extra-android-m2repository
+          - extra-android-support
+          - extra-google-google_play_services
+          - extra-google-m2repository
       
       before_install:
         - nvm install 10
