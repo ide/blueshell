@@ -11,7 +11,7 @@ matrix:
 
           # buildToolsVersion
           - build-tools-27.0.3
-          
+
           # compileSdkVersion
           - android-27
 
@@ -25,6 +25,7 @@ matrix:
 
       install:
         - npm install --global expo-cli
+        - npm install
       
       script:
         - expo eject --non-interactive --eject-method expoKit
